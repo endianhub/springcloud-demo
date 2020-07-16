@@ -1,10 +1,9 @@
 server:
   port: 7001 # 配置服务端口
 
-# 如果部署集群需要保持名字相同
 spring:
   application:
-    name: eureka-server
+    name: eureka-server # 如果部署集群需要保持名字相同
 
 eureka:
   instance:

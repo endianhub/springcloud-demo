@@ -9,7 +9,7 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://127.0.0.1:7000/eureka,http://127.0.0.1:7001/eureka
+      defaultZone: http://127.0.0.1:7000/eureka,http://127.0.0.1:7001/eureka # 配置多个注册中心
     register-with-eureka: true # 是否需要将自己注册到注册中心(注册中心集群需要设置为true)，默认为true。因为自己是为注册中心，所以不需要自己注册自己
     fetch-registry: true # 是否需要搜索服务信息（是否启用注册服务信息），因为这是一个单节点的EurekaServer，不需要同步其他的EurekaServer节点的数据，所以设置为false；因为自己是为注册中心，不需要检索服务
 
