@@ -1,68 +1,90 @@
-#### SpringCloud 微服务搭建 - 使用 Feign 服务间通信
+#### SpringCloud 微服务搭建 - 会员集群服务
+
+使用 Feign 服务间通信内部完成负载均衡，当其中一台服务宕机后，依然保证服务的正常运行。
+
+在开发测试时，需要频繁地重启微服务实例，但是我们很少会把eureka server一起重启（因为在开发过程中不会修改eureka注册中心），所以测试时需要在注册中心关闭自我保护机制，保证不可用服务及时踢出。
+
+	eureka:
+	  server:
+		# 测试时关闭自我保护机制，保证不可用服务及时踢出
+		enable-self-preservation: false
+		# 剔除失效服务间隔
+		eviction-interval-timer-in-ms: 10000
+
+另外，还需要在其他服务中配置心跳时间，保证服务关闭后注册中心能及时踢出服务。
+
+	# 服务注册到eureka地址
+	eureka:
+	  # 心跳检测检测与续约时间
+	  # 测试时将值设置设置小些，保证服务关闭后注册中心能及时踢出服务
+	  instance:
+		###Eureka客户端向服务端发送心跳的时间间隔，单位为秒（客户端告诉服务端自己会按照该规则）
+		lease-renewal-interval-in-seconds: 1
+		####Eureka服务端在收到最后一次心跳之后等待的时间上限，单位为秒，超过则剔除（客户端告诉服务端按照此规则等待自己）
+		lease-expiration-duration-in-seconds: 2
 
 
-在 SpringCloud 中服务与服务之间通信有两种方式：
-- RestTemplate：是采用服务别名方式调用，根据别名去注册中心上获取对应的服务调用地址；
-- fegin：是直接调用
+
+
+<br>
+<hr>
+<br>
+
+
+### Eureka详解
+
+#### 服务消费者模式
+
+##### 获取服务
+
+消费者启动的时候，使用服务别名，会发送一个rest请求到服务注册中心获取对应的服务信息，让后会缓存到本地jvm客户端中，同时客户端每隔30秒从服务器上更新一次。可以通过 fetch-inte vall-seconds=30 参数进行修以通过 eureka.client.registry 该参数默认值为30， 单位为秒。
+
+##### 服务下线
+
+在系统运行过程中必然会面临关闭或重启服务的某个实例的情况，在服务关闭期有我们自然不希望客户端会继续调用关闭了的实例。所以在客户端程序中，当服务实例过正常的关闭操作时，它会触发一个服务下线的REST请求给Eureka Server, 告诉服务日中心:“我要下线了”。服务端在接收到请求之后，将该服务状态置为下线(DOWN)，井该下线事件传播出去。
+
 
 <br>
 
-### 本节主要谈的是使用 Feign 通信。
 
-<br>
+#### 服务注册模式
 
-Feign客户端是一个web声明式http远程调用工具，提供了接口和注解方式进行调用。想要使用 Feign 通信，需要引入
+##### 失效剔除
 
-    <!-- SpringBoot整合fegnin客户端 -->
-    <dependency>
-        <groupId>org.springframework.cloud</groupId>
-        <artifactId>spring-cloud-starter-openfeign</artifactId>
-    </dependency>
+有些时候，我们的服务实例并不一定会正常下线，可能由于内存溢出、网络故障气因使得服务不能正常工作，而服务注册中心并未收到“服务下线”的请求。为了从服务表中将这些无法提供服务的实例剔除，Eureka Server 在启动的时候会创建一个定时任多默认每隔一一段时间(默认为60秒)将当前清单中超时(默认为90秒)没有续约的服务除出
 
-使用 @FeignClient 注解指向调用的服务名称，如：
+##### 去自我保护
 
-    @FeignClient(value = "api-member-service")
+默认情况下,EurekaClient会定时向EurekaServer端发送心跳，如果EurekaServer在一定时间内没有收到EurekaClient发送的心跳，便会把该实例从注册服务列表中剔除（默认是90秒）,但是在短时间内丢失大量的实例心跳，这时候EurekaServer会开启自我保护机制，Eureka不会踢出该服务。
 
-并再启动类中加入 @EnableFeignClients 注解，开启 Feign 通信。
 
-Feign 通信客户端默认等待时间为1秒，超出后会报连接超时的问题，浏览器会显示500，但后台仍然会继续执行。想要解决此问题需要再配置文件中加入
 
-    # 设置feign客户端超时时间
-    ribbon:
-      # 指的是建立连接所用的时间，适用于网络状况正常的情况下，两端连接所用的时间。
-      ReadTimeout: 5000
-      # 指的是建立连接后从服务器读取到可用资源所用的时间。
-      ConnectTimeout: 5000
+在开发测试时，需要频繁地重启微服务实例，但是我们很少会把eureka server一起重启（因为在开发过程中不会修改eureka注册中心），当一分钟内收到的心跳数大量减少时，会触发该保护机制。可以在eureka管理界面看到Renews threshold和Renews(last min)，当后者（最后一分钟收到的心跳数）小于前者（心跳阈值）的时候，触发保护机制，会出现红色的警告：
 
-<br>
+> EMERGENCY!EUREKA MAY BE INCORRECTLY CLAIMING INSTANCES ARE UP WHEN THEY'RE NOT.RENEWALS ARE LESSER THAN THRESHOLD AND HENCE THE INSTANCES ARE NOT BEGING EXPIRED JUST TO BE SAFE.
 
-如果在处理大量请求（超出最大线程池）时会产生微服务全部瘫痪，导致浏览器一直等待相应，俗称服务雪崩效应。
+从警告中可以看到，该警告就是触发了Eureka Server的自我保护机制。服务注册到Eureka Server之后会维护心跳连接， 告诉Eureka Server自己还活着。eureka认为虽然收不到实例的心跳，但它认为实例还是健康的，eureka会保护这些实例，不会把它们从注册表中删掉。
 
-模拟最大线程池量
+该保护机制的目的是避免网络连接故障，在发生网络故障时，微服务和注册中心之间无法正常通信，但服务本身是健康的，不应该注销该服务。
+
+如果eureka因网络故障而把微服务误删了，那即使网络恢复了，该微服务也不会重新注册到eureka server了，因为只有在微服务启动的时候才会发起注册请求，后面只会发送心跳和服务列表请求，这样的话，该实例虽然是运行着，但永远不会被其它服务所感知。
+
+所以，eureka server在短时间内丢失过多的客户端心跳时，会进入自我保护模式，该模式下，eureka会保护注册表中的信息，不在注销任何微服务，当网络故障恢复后，eureka会自动退出保护模式。
+
+自我保护模式可以让集群更加健壮，但是我们在开发测试阶段，需要频繁地重启发布，如果触发了保护机制，则旧的服务实例没有被删除，这时请求有可能跑到旧的实例中，而该实例已经关闭了，这就导致请求错误，影响开发测试。
+
+所以在开发测试阶段很容易触发注册中心的保护机制，这会使得注册中心维护的服务实仍那么准确。所以我们在本地进行开发的时候我们可以把自我保护模式关闭，以确保注册中心可以将不可用的例正确剔除。只需在eureka server配置文件中加上如下配置即可：
 
     server:
-      tomcat:
-        threads:
-          max: 10 # 假设模拟最大线程数
+        # 测试时关闭自我保护机制，保证不可用服务及时踢出
+        enable-self-preservation: false
+        ##剔除失效服务间隔
+        eviction-interval-timer-in-ms: 2000
 
 
-<br>
-
-##### 注册中心
-- springcloud-eureka
+Eureka Server在运行期间，会统计心跳失败的比例在15分钟之内是否低于85%如果出现低于的情况单机调试的时候很容易满足，实际在生产环境上通常是由于网络不稳定导致)，Eureka Server会将当前的实例注册信息保护起来，让这些实例不会过期，尽可能保护这些注册信息。但是在这段保护期间内实例若出现问题，那么客户端很容易拿到实际已经不存服务实例，会出现调用失败的情况，所以客户端必须要有容错机制，比如可以使用请使用重试、断路器等机制。
 
 
-##### 服务提供者
-springcloud-api-member-service
 
 
-##### 服务消费者
-springcloud-order-server
 
-
-<br><br>
-
-
-##### 参考地址：
-- https://blog.csdn.net/weixin_44448094/article/details/88535475
-- https://www.cnblogs.com/Guroer/p/10480359.html
