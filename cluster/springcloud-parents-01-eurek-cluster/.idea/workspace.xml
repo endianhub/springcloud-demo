@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7899bdb3-56ae-4ddf-936c-05b2decb3697" name="Default Changelist" comment="" />
+    <list default="true" id="7899bdb3-56ae-4ddf-936c-05b2decb3697" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../springcloud-parents-02-service-cluster/springcloud-eureka/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../springcloud-parents-02-service-cluster/springcloud-eureka/target/classes/application.yml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -24,8 +26,8 @@
     <option name="generalSettings">
       <MavenGeneralSettings>
         <option name="alwaysUpdateSnapshots" value="true" />
-        <option name="mavenHome" value="D:/Apache/Maven/apache-maven-3.6.0" />
-        <option name="userSettingsFile" value="D:\Apache\Maven\apache-maven-3.6.0\conf\practice\settings.xml" />
+        <option name="mavenHome" value="D:/Software/Apache/apache-maven-3.6.0" />
+        <option name="userSettingsFile" value="D:\Software\Apache\apache-maven-3.6.0\conf\practice\settings.xml" />
       </MavenGeneralSettings>
     </option>
     <option name="importingSettings">
@@ -164,11 +166,26 @@
       <workItem from="1594779892471" duration="783000" />
       <workItem from="1594820576062" duration="2018000" />
       <workItem from="1594864625136" duration="594000" />
+      <workItem from="1594866761693" duration="4931000" />
+      <workItem from="1594891246409" duration="14000" />
+      <workItem from="1594891269301" duration="1822000" />
     </task>
+    <task id="LOCAL-00001" summary="commit">
+      <created>1594894841965</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1594894841965</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit" />
   </component>
   <component name="WindowStateProjectService">
     <state x="552" y="177" key="#Project_Structure" timestamp="1594692081410">
@@ -184,11 +201,19 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="488" y="72" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1594735616456" />
-    <state x="526" y="140" key="FileChooserDialogImpl" timestamp="1594822204208">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="227" y="112" key="CommitChangelistDialog2" timestamp="1594894840962">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="227" y="112" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1594894840962" />
+    <state x="184" y="86" key="DiffContextDialog" timestamp="1594894827645">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="184" y="86" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1594894827645" />
+    <state x="372" y="223" key="FileChooserDialogImpl" timestamp="1594869029829">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="526" y="140" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1594822204208" />
-    <state x="740" y="274" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1594690599367" />
+    <state x="372" y="223" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1594869029829" />
     <state width="1322" height="347" key="GridCell.Tab.0.bottom" timestamp="1594822107209">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -249,11 +274,15 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="279" y="70" key="NewModule_or_Project.wizard/0.0.1366.728@0.0.1366.728" timestamp="1594820636134" />
-    <state x="119" y="0" key="SettingsEditor" timestamp="1594820765503">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="461" y="151" key="SettingsEditor" timestamp="1594867148187">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="119" y="0" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1594820765503" />
-    <state x="461" y="151" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1594692707622" />
+    <state x="461" y="151" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1594867148187" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1594894898598">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1594894898598" />
     <state x="759" y="296" key="chooseDestDirectoryDialog" timestamp="1594700038706">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
