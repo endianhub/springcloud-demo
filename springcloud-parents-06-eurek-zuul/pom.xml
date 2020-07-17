@@ -21,6 +21,7 @@
         <module>springcloud-order-service</module>
         <module>springcloud-api-service</module>
         <module>springcloud-common</module>
+        <module>springcloud-zuul</module>
     </modules>
 
 
