@@ -1,7 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="382a3091-e84b-418b-8260-d228ec368234" name="Default Changelist" comment="" />
+    <list default="true" id="382a3091-e84b-418b-8260-d228ec368234" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../springcloud-parents-06-eurek-zuul/springcloud-zuul/src/main/java/com/xh/springcloud/zuul/filter/TokenFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springcloud-parents-06-eurek-zuul/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../springcloud-parents-06-eurek-zuul/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springcloud-parents-06-eurek-zuul/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../springcloud-parents-06-eurek-zuul/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springcloud-parents-06-eurek-zuul/springcloud-api-member-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../springcloud-parents-06-eurek-zuul/springcloud-api-member-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springcloud-parents-06-eurek-zuul/springcloud-api-member-service/target/classes/com/xh/springcloud/api/service/impl/MemberServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/../springcloud-parents-06-eurek-zuul/springcloud-api-member-service/target/classes/com/xh/springcloud/api/service/impl/MemberServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springcloud-parents-06-eurek-zuul/springcloud-api-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../springcloud-parents-06-eurek-zuul/springcloud-api-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springcloud-parents-06-eurek-zuul/springcloud-common/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../springcloud-parents-06-eurek-zuul/springcloud-common/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springcloud-parents-06-eurek-zuul/springcloud-eureka/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../springcloud-parents-06-eurek-zuul/springcloud-eureka/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springcloud-parents-06-eurek-zuul/springcloud-order-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../springcloud-parents-06-eurek-zuul/springcloud-order-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springcloud-parents-06-eurek-zuul/springcloud-order-service/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../springcloud-parents-06-eurek-zuul/springcloud-order-service/target/classes/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springcloud-parents-06-eurek-zuul/springcloud-order-service/target/classes/com/xh/springcloud/api/service/impl/OrderServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/../springcloud-parents-06-eurek-zuul/springcloud-order-service/target/classes/com/xh/springcloud/api/service/impl/OrderServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springcloud-parents-06-eurek-zuul/springcloud-zuul/pom.xml" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -16,6 +30,9 @@
         <option value="Class" />
       </list>
     </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -36,6 +53,7 @@
     <option name="jreName" value="1.8" />
   </component>
   <component name="ProjectId" id="1ei8sQDnLJG9GyVsImMzDcaeb7U" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -52,7 +70,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/springcloud-config-service/src/main/java/com/xh/springcloud/config/service" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -116,6 +134,7 @@
       <workItem from="1594793262157" duration="2209000" />
       <workItem from="1594796191324" duration="12624000" />
       <workItem from="1594817342597" duration="2305000" />
+      <workItem from="1595060867947" duration="2593000" />
     </task>
     <servers />
   </component>
@@ -179,10 +198,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="344" y="60" key="NewModule_or_Project.wizard/0.0.1366.728@0.0.1366.728" timestamp="1594793998859" />
-    <state x="184" y="0" key="SettingsEditor" timestamp="1594794494342">
+    <state x="184" y="0" key="SettingsEditor" timestamp="1595060878653">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="184" y="0" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1594794494342" />
+    <state x="184" y="0" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1595060878653" />
     <state x="316" y="57" key="new project wizard" timestamp="1594797523419">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

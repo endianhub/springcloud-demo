@@ -65,8 +65,13 @@ Spring Cloud Config可以实现微服务中的所有系统的配置文件的统�
 
 在使用配置中心的类上添加 @RefreshScope 注解，没有此注解刷新是不生效的。当配置更改时，标有 @RefreshScope 的 Bean 将得到特殊处理来生效配置。
 
-使用 POST 刷新 http://[IP]:[客户端端口]/actuat/refresh 
+使用 POST 刷新 
 
+    http://[IP]:[客户端端口]/actuat/refresh 
+
+还可以通过服务端访问配置文件
+
+    http://[IP]:[服务端端口]/[文件名].yml
 
 <br><br>
 
