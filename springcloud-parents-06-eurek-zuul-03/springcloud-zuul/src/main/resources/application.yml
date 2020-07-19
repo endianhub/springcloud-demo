@@ -1,0 +1,28 @@
+server:
+  port: 80
+
+# 网关名称
+spring:
+  application:
+    name: zuul-service
+  cloud:
+    config:
+      profile: dev #读取后缀
+      discovery:
+        service-id: config-server # 读取config-server注册地址
+        enabled: true
+
+# 服务注册地址
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:7000/eureka
+
+# 默认服务读取eureka注册服务列表 默认间隔30秒
+
+# 开启所有监控中心接口
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

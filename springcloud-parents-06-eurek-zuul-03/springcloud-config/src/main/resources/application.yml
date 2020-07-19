@@ -1,0 +1,7 @@
+server:
+  port: 8888 # 配置服务端口
+
+spring:
+  application:
+    name: config-server # 注册中心应用名称
+
